@@ -5,30 +5,27 @@
   "keywords": [
     "react",
     "react-component",
-    "react-g2-react",
+    "rc-g2",
     "g2-react",
     "g2"
   ],
-  "homepage": "https://github.com/react-component/g2-react",
+  "homepage": "https://github.com/antvis/g2-react",
   "author": "jaredleechn@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-component/g2-react.git"
+    "url": "https://github.com/antvis/g2-react.git"
   },
   "bugs": {
-    "url": "https://github.com/react-component/g2-react/issues"
+    "url": "https://github.com/antvis/g2-react/issues"
   },
+  "licenses": "MIT",
   "entry": {
     "index": "./index"
   },
+  "main": "./lib/index",
   "files": [
     "lib"
   ],
-  "licenses": "MIT",
-  "main": "./lib/index",
-  "config": {
-    "port": 8088
-  },
   "scripts": {
     "compile": "rm -rf lib && babel src --out-dir lib",
     "build": "atool-build",

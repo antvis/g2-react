@@ -14,7 +14,7 @@ Factory wrapper for using [G2](http://g2.alipay.com) easier in a React Component
 
 ## Example
 
-- [online example](http://react-component.github.io/g2)
+- [online example](https://antvis.github.io/g2-react)
 
 - [local example](http://localhost:8989/)
 
@@ -103,7 +103,7 @@ See detail api of [g2](http://g2.alipay.com/api/)
 ## Development
 
 ```bash
-$ git clone git@github.com:react-component/g2.git
+$ git clone git@github.com:antvis/g2-react.git
 $ npm install
 $ npm run doc
 ```
