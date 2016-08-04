@@ -1,6 +1,6 @@
 {
   "name": "g2-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "factory wrapper for g2",
   "keywords": [
     "react",
@@ -25,7 +25,7 @@
     "lib"
   ],
   "licenses": "MIT",
-  "main": "./index",
+  "main": "./lib/index",
   "config": {
     "port": 8088
   },
