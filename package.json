@@ -1,0 +1,82 @@
+{
+  "name": "g2-react",
+  "version": "1.0.0",
+  "description": "factory wrapper for g2",
+  "keywords": [
+    "react",
+    "react-component",
+    "react-g2-react",
+    "g2-react",
+    "g2"
+  ],
+  "homepage": "https://github.com/react-component/g2-react",
+  "author": "jaredleechn@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-component/g2-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/react-component/g2-react/issues"
+  },
+  "entry": {
+    "index": "./index"
+  },
+  "files": [
+    "lib"
+  ],
+  "licenses": "MIT",
+  "main": "./index",
+  "config": {
+    "port": 8088
+  },
+  "scripts": {
+    "compile": "rm -rf lib && babel src --out-dir lib",
+    "build": "atool-build",
+    "lint": "eslint --ext .js src",
+    "test": "npm run lint && atool-test",
+    "coverage": "atool-test-mocha --coverage --recursive tests",
+    "doc": "atool-doc",
+    "doc-build": "atool-doc --build",
+    "gh-pages": "atool-doc --build && gh-pages -d __site",
+    "pub": "npm run compile && npm publish"
+  },
+  "peerDependencies": {
+    "g2": "^1.2.6"
+  },
+  "devDependencies": {
+    "atool-build": "~0.7.5",
+    "atool-doc": "~0.5.0",
+    "atool-test": "^0.4.16",
+    "babel-eslint": "^6.1.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "dora": "~0.3.2",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.1",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "expect.js": "^0.3.1",
+    "g2": "^1.2.6",
+    "gh-pages": "^0.11.0",
+    "pre-commit": "1.x",
+    "react": "0.14.x",
+    "react-dom": "0.14.x",
+    "webpack": "~1.12.14"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  }
+}
