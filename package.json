@@ -24,7 +24,8 @@
   },
   "main": "./lib/index",
   "files": [
-    "lib"
+    "lib",
+    "dist"
   ],
   "scripts": {
     "compile": "rm -rf lib && babel src --out-dir lib",
@@ -35,7 +36,7 @@
     "doc": "atool-doc",
     "doc-build": "atool-doc --build",
     "gh-pages": "atool-doc --build && gh-pages -d __site",
-    "pub": "npm run compile && npm publish"
+    "pub": "npm run compile && npm run build && npm publish"
   },
   "peerDependencies": {
     "g2": "^1.2.6"
