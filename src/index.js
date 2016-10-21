@@ -50,7 +50,7 @@ export default function createG2(__operation) {
         forceFit,
       });
       chart.source(data);
-      __operation(chart);
+      __operation.bind(this)(chart);
       this.chart = chart;
     }
 
