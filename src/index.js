@@ -28,7 +28,7 @@ export default function createG2(__operation) {
       }
 
       if (newData !== oldData) {
-        this.chart.changeData(newData);
+        this.chart.changeData(newData[0]);
       }
       if (newWidth !== oldWidth || newHeight !== oldHeight) {
         this.chart.changeSize(newWidth, newHeight);
@@ -49,7 +49,7 @@ export default function createG2(__operation) {
         plotCfg,
         forceFit,
       });
-      chart.source(data);
+      chart.source(...data);
       __operation(chart);
       this.chart = chart;
     }
