@@ -20,8 +20,8 @@ export default function createG2(__operation) {
     }
 
     componentWillReceiveProps(newProps) {
-      const { data: newData, width: newWidth, height: newHeight, plotCfg: newPlotCfg } = newProps;
-      const { data: oldData, width: oldWidth, height: oldHeight, plotCfg: oldPlotCfg } = this.props;
+      const { data: newData, width: newWidth, height: newHeight, plotCfg: newPlotCfg, defs: newDefs } = newProps;
+      const { data: oldData, width: oldWidth, height: oldHeight, plotCfg: oldPlotCfg, defs: oldDefs } = this.props;
 
       if (newPlotCfg !== oldPlotCfg) {
         console.warn('plotCfg 不支持修改');
@@ -42,14 +42,14 @@ export default function createG2(__operation) {
     }
 
     initChart(props) {
-      const { width, height, data, plotCfg, forceFit } = props;
+      const { width, height, data, plotCfg, forceFit, defs } = props;
       const chart = new G2.Chart({
         id: this.chartId,
         width, height,
         plotCfg,
         forceFit,
       });
-      chart.source(data);
+      chart.source(data, defs);
       __operation(chart);
       this.chart = chart;
     }
@@ -65,6 +65,7 @@ export default function createG2(__operation) {
     height: React.PropTypes.number.isRequired,
     plotCfg: React.PropTypes.object,
     forceFit: React.PropTypes.bool,
+    defs: React.PropTypes.object,
   };
 
   return Component;

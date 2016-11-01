@@ -91,6 +91,12 @@ See detail api of [g2](http://g2.alipay.com/api/)
       <td>data source</td>
     </tr>
     <tr>
+      <td>defs</td>
+      <td>object</td>
+      <td></td>
+      <td>data defs</td>
+    </tr>
+    <tr>
       <td>forceFit</td>
       <td>bool</td>
       <td>false</td>
