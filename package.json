@@ -63,7 +63,7 @@
     "react": "0.14.x",
     "react-dom": "0.14.x",
     "webpack": "~1.12.14",
-    "g2-plugin-slider": "1.0.0-beta"
+    "g2-plugin-slider": "~1.0.0"
   },
   "pre-commit": [
     "lint"
