@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>pie</title>
+    <title>g2-plugin-slider</title>
     <link href="//os.alipayobjects.com/rmsportal/iUKcdtKUFtONTig.css" rel="stylesheet"/>
     <style type="text/css">
       @font-face {
@@ -882,17 +882,17 @@
         
           <a href="../index.html" class="menu-item">Index</a>
         
-          <a href="g2-plugin-slider.html" class="menu-item">g2-plugin-slider</a>
+          <a href="" class="menu-item selected">g2-plugin-slider</a>
         
           <a href="line.html" class="menu-item">line</a>
         
-          <a href="" class="menu-item selected">pie</a>
+          <a href="pie.html" class="menu-item">pie</a>
         
       </ul>
       <div class="wrapper-content">
         <div class="header">
-          <h2 class="major-title">pie</h2>
-          <h4 class="desc-title">examples/pie.md</h4>
+          <h2 class="major-title">g2-plugin-slider</h2>
+          <h4 class="desc-title">examples/g2-plugin-slider.md</h4>
         </div>
         <div class="example">
           <div class="example-dom" id="__exampleDom"></div>
@@ -900,6 +900,7 @@
           
             <div class="example-html">
               <div id="__react-content"></div>
+<div id="range"></div>
             </div>
           
 
@@ -907,7 +908,7 @@
             
               <script src="../common.js"></script>
             
-              <script src="pie.js"></script>
+              <script src="g2-plugin-slider.js"></script>
             
           </div>
         </div>
@@ -917,52 +918,98 @@
             <div class="markdown-body">
               <h2>code</h2>
 <div class="highlight">
-    <pre><code language=html><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"__react-content"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+    <pre><code language=html><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"__react-content"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"range"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
   </div>
 <div class="highlight">
-    <pre><code language=jsx><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
-<span class="hljs-keyword">import</span> { Stat } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
+    <pre><code language=js><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
+<span class="hljs-keyword">import</span> G2, { Stat, Plugin, Frame } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'g2-plugin-slider'</span>;
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
-<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./diamond.json'</span>;
-
-<span class="hljs-keyword">const</span> Pie = createG2(chart =&gt; {
-  chart.coord(<span class="hljs-string">'theta'</span>);
-  chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'cut'</span>);
-  chart.render();
-});
+<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./candleSticks.json'</span>;
 
 <span class="hljs-keyword">const</span> MyComponent = React.createClass({
 
-  getInitialState() {
+  getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> frame = <span class="hljs-keyword">new</span> Frame(data);
+    frame.addCol(<span class="hljs-string">'trend'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
+      <span class="hljs-keyword">return</span> (obj.start &lt;= obj.end) ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>;
+    });
+
+    <span class="hljs-keyword">const</span> Chart = createG2(chart =&gt; {
+      chart.source(frame, {
+        <span class="hljs-string">'trend'</span>: {
+          type: <span class="hljs-string">'cat'</span>,
+          alias: <span class="hljs-string">'趋势'</span>,
+          values: [<span class="hljs-string">'上涨'</span>, <span class="hljs-string">'下跌'</span>]
+        },
+        <span class="hljs-string">'time'</span>: {
+          type: <span class="hljs-string">'timeCat'</span>,
+          nice: <span class="hljs-literal">false</span>,
+          mask: <span class="hljs-string">'mm-dd'</span>,
+          alias: <span class="hljs-string">'时间'</span>,
+          tickCount: <span class="hljs-number">10</span>,
+          range: [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+        },
+        <span class="hljs-string">'volumn'</span>: {
+          alias: <span class="hljs-string">'成交量'</span>
+        },
+        <span class="hljs-string">'start'</span>: {
+          alias: <span class="hljs-string">'开盘价'</span>
+        },
+        <span class="hljs-string">'end'</span>: {
+          alias: <span class="hljs-string">'收盘价'</span>
+        },
+        <span class="hljs-string">'max'</span>: {
+          alias: <span class="hljs-string">'最高价'</span>
+        },
+        <span class="hljs-string">'min'</span>: {
+          alias: <span class="hljs-string">'最低价'</span>
+        },
+        <span class="hljs-string">'start+end+max+min'</span>: {
+          alias: <span class="hljs-string">'股票价格'</span>
+        }
+      });
+      chart.axis(<span class="hljs-string">'time'</span>, {
+        title: <span class="hljs-literal">null</span>
+      });
+      chart.schema()
+        .position(<span class="hljs-string">'time*(start+end+max+min)'</span>)
+        .color(<span class="hljs-string">'trend'</span>, [<span class="hljs-string">'#2AF483'</span>, <span class="hljs-string">'#F80041'</span>])
+        .shape(<span class="hljs-string">'candle'</span>)
+        .tooltip(<span class="hljs-string">'start*end*max*min*volumn'</span>);
+
+      <span class="hljs-comment">// 创建滑动条</span>
+      <span class="hljs-keyword">var</span> slider = <span class="hljs-keyword">new</span> Plugin.slider({
+        domId: <span class="hljs-string">'range'</span>,
+        width: <span class="hljs-number">500</span>,
+        height: <span class="hljs-number">30</span>,
+        charts: chart,
+        xDim: <span class="hljs-string">'time'</span>,
+        yDim: <span class="hljs-string">'max'</span>
+      });
+      slider.render();
+    });
     <span class="hljs-keyword">return</span> {
-      data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
+      data: data,
       width: <span class="hljs-number">500</span>,
       height: <span class="hljs-number">250</span>,
       plotCfg: {
-        margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
+        margin: [<span class="hljs-number">30</span>, <span class="hljs-number">120</span>, <span class="hljs-number">30</span>],
+        background: {
+          fill: <span class="hljs-string">'#191821'</span>
+        }
       },
+      Chart: Chart,
     };
   },
 
-  changeHandler() {
-    <span class="hljs-keyword">const</span> { chart } = <span class="hljs-keyword">this</span>.refs.myChart;
-    chart.clear();
-    chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'clarity'</span>);      <span class="hljs-comment">// operation</span>
-    chart.render();
-  },
-
-  render() {
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> (
       &lt;div&gt;
-        &lt;Pie
-          data={this.state.data}
-          width={this.state.width}
-          height={this.state.height}
-          plotCfg={this.state.plotCfg}
-          ref="myChart"
-        /&gt;
-        &lt;button onClick={this.changeHandler}&gt;change&lt;/button&gt;
+        &lt;this.state.Chart data={this.state.data} width={this.state.width} height={this.state.height} plotCfg={this.state.plotCfg} ref="myChart"/&gt;
+        &lt;div id="range"&gt;&lt;/div&gt;
       &lt;/div&gt;
     );
   },
@@ -970,9 +1017,6 @@
 
 ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
   </div>
-<h2>Description</h2>
-<ul><li>simple example for pie chart</li>
-<li>change other props by refs</li></ul>
             </div>
           </div>
         
