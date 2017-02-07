@@ -67,7 +67,7 @@ const MyComponent = React.createClass({
         .tooltip('start*end*max*min*volumn');
       
       // 创建滑动条
-      var slider = new Plugin.Slider({
+      var slider = new Plugin.slider({
         domId: 'range',
         width: 500,
         height: 30,
