@@ -5,9 +5,9 @@ module.exports = function(config) {
     externals: {
       g2: {
         root: 'G2',
-        commonjs2: 'g2',
-        commonjs: 'g2',
-        amd: 'g2',
+        commonjs2: 'G2',
+        commonjs: 'G2',
+        amd: 'G2',
       },
       react: {
         root: 'React',
