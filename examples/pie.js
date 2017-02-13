@@ -5,17 +5,17 @@ webpackJsonp([2],{
 
 	'use strict';
 
-	var _g2React = __webpack_require__(55);
+	var _g2React = __webpack_require__(36);
 
 	var _g2React2 = _interopRequireDefault(_g2React);
 
-	var _g = __webpack_require__(19);
+	var _g = __webpack_require__(18);
 
-	var _react = __webpack_require__(33);
+	var _react = __webpack_require__(24);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(35);
+	var _reactDom = __webpack_require__(26);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
-    <title>
-      g2-react@1.0.1
-    </title>
+    <meta charset="UTF-8">
+    <title>higherWrapper</title>
     <link href="//os.alipayobjects.com/rmsportal/iUKcdtKUFtONTig.css" rel="stylesheet"/>
     <style type="text/css">
       @font-face {
@@ -545,7 +542,7 @@
         border-color: #4078c0;
       }
 
-      .md-wrapper,
+      #readme,
       .examples {
         min-width: 200px;
         max-width: 790px;
@@ -553,14 +550,14 @@
         padding: 0 30px;
       }
 
-      .md-wrapper .boxed-group {
+      #readme .boxed-group {
         position: relative;
         border-radius: 3px;
         margin-bottom: 30px;
       }
 
-      .md-wrapper .markdown-body,
-      .md-wrapper .plain,
+      #readme .markdown-body,
+      #readme .plain,
       .examples .examples-body {
         background-color: #fff;
         border: 1px solid #ddd;
@@ -586,6 +583,34 @@
 
       .examples-body ul {
         margin: 0;
+      }
+
+      .highlight pre {
+        padding: 0.8em 1em;
+        font: 14px/20px Consolas, Monaco, 'Andale Mono', monospace;
+        border: 1px solid #e5e8ec;
+        border-radius: 3px;
+        background-size: 40px 40px;
+        background-origin: content-box;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .highlight pre > code {
+        font-family: inherit;
+        direction: ltr;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        vertical-align: 2px;
+        display: block;
+        -moz-tab-size: 2;
+        -o-tab-size: 2;
+        tab-size: 2;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
       }
 
       /*
@@ -687,168 +712,286 @@
       .hljs-strong {
         font-weight: bold;
       }
+      
+      body {
+        height: 100%;
+      }
+
+      .wrapper {
+        margin-left: 7%;
+        padding-bottom: 30px;
+      }
+
+      .wrapper-content {
+        width: calc(100% - 260px);
+      }
 
       .header {
-        min-width: 200px;
-        max-width: 790px;
-        margin: 0 auto;
+        margin: 40px 0 10px 0;
+        border-left: 10px solid #ddd;
+        padding: 5px 20px;
       }
+      .header .major-title {
+        text-transform: uppercase;
+        margin: 10px 0;
+      }
+
+      .header .desc-title {
+        color: #999;
+        margin: 5px 0;
+        font-weight: normal;
+      }
+      .example {
+        padding: 20px 0;
+      }
+
+      .demos-anchor {
+        max-width: 230px;
+        max-height: 90%;
+        width: calc(100% + 10px);
+        right: 20px;
+        position: fixed;
+        color: #aaa;
+        padding: 0;
+        z-index: 100;
+        overflow-y: auto;
+      }
+
+      .menu {
+        margin-bottom: 15px;
+        list-style: none;
+        background-color: #fff;
+        border: 1px solid #d8d8d8;
+        border-radius: 3px;
+      }
+
+      .menu-item {
+        font-family: Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        position: relative;
+        display: block;
+        padding: 8px 10px;
+        text-shadow: 0 1px 0 #fff;
+        border-bottom: 1px solid #eee;
+        font-size: 13px;
+      }
+      .menu-item:first-child {
+        border-top: 0;
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
+      }
+      .menu-item:first-child:before {
+        border-top-left-radius: 2px;
+      }
+      .menu-item:last-child {
+        border-bottom: 0;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+      .menu-item:last-child:before {
+        border-bottom-left-radius: 2px;
+      }
+      .menu-item:hover {
+        text-decoration: none;
+        background-color: #f9f9f9;
+      }
+
+      .menu-item.selected {
+        font-weight: bold;
+        color: #222;
+        cursor: default;
+        background-color: #fff;
+      }
+      .menu-item.selected:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 2px;
+        content: "";
+        background-color: #d26911;
+      }
+
+      .menu-item .octicon {
+        margin-right: 5px;
+        width: 16px;
+        color: #333;
+        text-align: center;
+      }
+
+      .menu-item .counter {
+        float: right;
+        margin-left: 5px;
+      }
+
+      .menu-item .menu-warning {
+        float: right;
+        color: #d26911;
+      }
+
+      .menu-item .avatar {
+        float: left;
+        margin-right: 5px;
+      }
+
+      .menu-item.alert .counter {
+        color: #bd2c00;
+      }
+
+      .menu-heading {
+        display: block;
+        padding: 8px 10px;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 20px;
+        color: #555;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #eee;
+      }
+      .menu-heading:hover {
+        text-decoration: none;
+      }
+      .menu-heading:first-child {
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
+      }
+      .menu-heading:last-child {
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        border-bottom: 0;
+      }
+
+      a {
+        cursor: auto;
+        color: #4078c0;
+        text-decoration: none;
+      }
+      h2 {
+        text-transform: uppercase;
+      }
+
+    </style>
+    <style type="text/css">
       
     </style>
   </head>
-
   <body>
-    <div>
-      <div class="header">
-        <h1>g2-react@1.0.1</h1>
-      </div>
-      <div class="examples">
-        <h3>EXAMPLES</h3>
-        <div class="examples-body">
-          <ul>
-            
-              <li>
-                <a href="./examples/g2-plugin-slider.html">
-                  g2-plugin-slider
-                </a>
-              </li>
-            
-              <li>
-                <a href="./examples/higherWrapper.html">
-                  higherWrapper
-                </a>
-              </li>
-            
-              <li>
-                <a href="./examples/line.html">
-                  line
-                </a>
-              </li>
-            
-              <li>
-                <a href="./examples/pie.html">
-                  pie
-                </a>
-              </li>
-            
-          </ul>
+    <div class="wrapper">
+      <ul class="demos-anchor menu">
+        
+          <a href="../index.html" class="menu-item">Index</a>
+        
+          <a href="g2-plugin-slider.html" class="menu-item">g2-plugin-slider</a>
+        
+          <a href="" class="menu-item selected">higherWrapper</a>
+        
+          <a href="line.html" class="menu-item">line</a>
+        
+          <a href="pie.html" class="menu-item">pie</a>
+        
+      </ul>
+      <div class="wrapper-content">
+        <div class="header">
+          <h2 class="major-title">higherWrapper</h2>
+          <h4 class="desc-title">examples/higherWrapper.md</h4>
         </div>
-      </div>
-      <div class="boxed-group md-wrapper" id="readme">
-        <h3>README.md</h3>
-        <div class="markdown-body">
-          <h1 id="g2-react">g2-react</h1>
-<p>Factory wrapper for using <a href="http://g2.alipay.com">G2</a> easier in a React Component with dynamic <code>data</code> and <code>size</code> props</p>
-<p><em>Note that <code>g2-react</code> is just a wrapper, if you want to make a better chart, <code>docs of G2</code> is <a href="http://g2.alipay.com/">HERE</a></em></p>
-<p><a href="http://npmjs.org/package/g2-react"><img src="http://img.shields.io/npm/v/g2-react.svg?style=flat-square" alt="NPM version"></a>
-<a href="https://npmjs.org/package/g2-react"><img src="https://img.shields.io/npm/dm/g2-react.svg?style=flat-square" alt="npm download"></a></p>
-<h2 id="example">Example</h2>
-<ul>
-<li><p><a href="https://antvis.github.io/g2-react">online example</a></p>
-</li>
-<li><p><a href="http://localhost:8989/">local example</a></p>
-</li>
-</ul>
-<h2 id="install">Install</h2>
+        <div class="example">
+          <div class="example-dom" id="__exampleDom"></div>
+
+          
+            <div class="example-html">
+              <div id="__react-content"></div>
+            </div>
+          
+
+          <div class="example-scripts">
+            
+              <script src="../common.js"></script>
+            
+              <script src="higherWrapper.js"></script>
+            
+          </div>
+        </div>
+
+        
+          <div class="boxed-group" id="desc">
+            <div class="markdown-body">
+              <h2>code</h2>
 <div class="highlight">
-    <pre><code language=bash>$ npm install g2 --save
-$ npm install g2-react --save</code></pre>
-  </div><p><code>g2-react</code> works with a <a href="https://nodejs.org/en/blog/npm/peer-dependencies/">peerDependencies</a> of <code>g2</code>, you can specify the version of <code>g2</code> in your <code>package.json</code></p>
-<h2 id="usage">Usage</h2>
+    <pre><code language=html><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"__react-content"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  </div>
 <div class="highlight">
-    <pre><code language=js><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
+    <pre><code language=jsx><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
 <span class="hljs-keyword">import</span> { Stat } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./data.json'</span>;
 
-<span class="hljs-keyword">const</span> Pie = createG2(chart =&gt; {
-  chart.coord(<span class="hljs-string">'theta'</span>);
-  chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'cut'</span>);
-  chart.render();
-});
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HigherChart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
 
-React.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Pie</span>
-    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.data}</span>
-    <span class="hljs-attr">width</span>=<span class="hljs-string">{this.state.width}</span>
-    <span class="hljs-attr">height</span>=<span class="hljs-string">{this.state.height}</span>
-    <span class="hljs-attr">plotCfg</span>=<span class="hljs-string">{this.state.plotCfg}</span>
-    <span class="hljs-attr">ref</span>=<span class="hljs-string">"myChart"</span>
-  /&gt;</span>
-);</span></code></pre>
-  </div><h2 id="props">Props</h2>
-<p>See detail api of <a href="http://g2.alipay.com/api/">g2</a></p>
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-        <th style="width: 100px;">name</th>
-        <th style="width: 50px;">type</th>
-        <th style="width: 100px;">default</th>
-        <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>width</td>
-      <td>number.isRequired</td>
-      <td></td>
-      <td>width of chart</td>
-    </tr>
-    <tr>
-      <td>height</td>
-      <td>number.isRequired</td>
-      <td></td>
-      <td>height of chart</td>
-    </tr>
-    <tr>
-      <td>plotCfg</td>
-      <td>object</td>
-      <td></td>
-      <td>config of chart, margin, border, backgroud...</td>
-    </tr>
-    <tr>
-      <td>data</td>
-      <td>arrayOf(object).isRequired</td>
-      <td></td>
-      <td>data source</td>
-    </tr>
-    <tr>
-      <td>forceFit</td>
-      <td>bool</td>
-      <td>false</td>
-      <td>if the width of chart autoFit with parent</td>
-    </tr>
-  </tbody>
-</table>
+  <span class="hljs-keyword">constructor</span>(props, ...others) {
+    <span class="hljs-keyword">super</span>(props, ...others);
+    <span class="hljs-keyword">this</span>.Chart = createG2(chart =&gt; {
+      <span class="hljs-keyword">this</span>.chart = chart;
+      chart.line().position(<span class="hljs-string">'time*price'</span>).color(<span class="hljs-string">'name'</span>).shape(props.shape).size(<span class="hljs-number">2</span>);
+      chart.render();
+    });
+  }
 
+  componentWillReceiveProps(nextProps) {
+    <span class="hljs-keyword">if</span> (nextProps.shape !== <span class="hljs-keyword">this</span>.props.shape) {
+      <span class="hljs-keyword">this</span>.chart.clear();
+      <span class="hljs-keyword">this</span>.chart.line().position(<span class="hljs-string">'time*price'</span>).color(<span class="hljs-string">'name'</span>).shape(nextProps.shape).size(<span class="hljs-number">2</span>);
+      <span class="hljs-keyword">this</span>.chart.render();
+    }
+  }
 
-<h2 id="development">Development</h2>
-<div class="highlight">
-    <pre><code language=bash>$ git <span class="hljs-built_in">clone</span> git@github.com:antvis/g2-react.git
-$ npm install
-$ npm run doc</code></pre>
-  </div><h2 id="license">License</h2>
-<p>g2-react is released under the MIT license.</p>
+  render() {
+    <span class="hljs-keyword">return</span> (&lt;this.Chart {...this.props} /&gt;);
+  }
+}
 
-        </div>
+class MyComponent extends Component {
+  state = {
+    shape: 'spline',
+    data: data.slice(0, data.length / 2 - 1),
+    width: 500,
+    height: 250,
+    plotCfg: {
+      margin: [10, 100, 50, 120],
+    },
+  }
+  changeHandler = () =&gt; {
+    this.setState({
+      shape: 'line',
+    });
+  }
+  render() {
+    return &lt;div&gt;
+      &lt;HigherChart
+        shape={this.state.shape}
+        data={this.state.data}
+        width={this.state.width}
+        height={this.state.height}
+        plotCfg={this.state.plotCfg}
+      /&gt;
+      &lt;button onClick={this.changeHandler}&gt;Change shape&lt;/button&gt;
+    &lt;/div&gt;
+  }
+}
+
+ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
+  </div>
+<h2>Description</h2>
+<ul><li>change shape by props</li>
+<li>higher wrapper for chart to dynamic chart config</li>
+<li>you can make more higher wrapper for it using componentWillReceiveProps and chart.clear</li></ul>
+            </div>
+          </div>
+        
+
+        
       </div>
-      
-      <div class="boxed-group md-wrapper" id="history">
-        <h3>HISTORY.md</h3>
-        <div class="markdown-body">
-          <h2 id="1-0-1">1.0.1</h2>
-<ul>
-<li>[fix] pkg.main path</li>
-</ul>
-<h2 id="1-0-0">1.0.0</h2>
-<ul>
-<li>let there be rc-g2</li>
-</ul>
-
-        </div>
-      </div>
-      
-      
-      <a href="https://github.com/antvis/g2-react"><img alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" style="position: absolute; top: 0; right: 0; border: 0;"></a>
-    </div>
   </body>
-
 </html>
