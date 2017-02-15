@@ -35,6 +35,10 @@ export default function createG2(__operation) {
       }
     }
 
+    shouldComponentUpdate() {
+      return false;
+    }
+
     componentWillUnmount() {
       this.chart.destroy();
       this.chart = null;
