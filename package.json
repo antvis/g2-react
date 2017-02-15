@@ -39,7 +39,7 @@
     "pub": "npm run compile && npm run build && npm publish"
   },
   "peerDependencies": {
-    "g2": "^2.0.0"
+    "g2": ">=1.2.6 <3.0.0"
   },
   "devDependencies": {
     "atool-build": "~0.7.5",
