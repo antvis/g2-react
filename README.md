@@ -50,7 +50,7 @@ React.render(
   />
 );
 ```
-
+Note that you can make a dynamic props wrap just like [higherWrapper demo](https://github.com/antvis/g2-react/blob/master/examples/higherWrapper.md)
 
 ## Props
 
