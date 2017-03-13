@@ -69,7 +69,7 @@ export default function createG2(__operation) {
     height: React.PropTypes.number.isRequired,
     plotCfg: React.PropTypes.object,
     forceFit: React.PropTypes.bool,
-    configs: React.PropTypes.object
+    configs: React.PropTypes.object,
   };
 
   return Component;
