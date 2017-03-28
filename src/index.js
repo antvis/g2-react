@@ -47,6 +47,7 @@ export default function createG2(__operation) {
 
     componentWillUnmount() {
       this.destroyChart();
+      this.chartId = null;
     }
 
     initChart(props) {
@@ -67,7 +68,6 @@ export default function createG2(__operation) {
         this.chart.destroy();
       }
       this.chart = null;
-      this.chartId = null;
     }
 
     render() {
