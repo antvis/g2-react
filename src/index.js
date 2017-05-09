@@ -46,7 +46,7 @@ export default function createG2(__operation) {
     }
 
     initChart(props) {
-      const { width, height, data, plotCfg, forceFit, configs } = props;
+      const { width, height, data, plotCfg, forceFit, configs, onChartReady } = props;
       const chart = new G2.Chart({
         id: this.chartId,
         width, height,
@@ -55,6 +55,7 @@ export default function createG2(__operation) {
       });
       chart.source(data);
       __operation(chart, configs);
+      if (typeof onChartReady === 'function') onChartReady(chart);
       this.chart = chart;
     }
 
@@ -70,6 +71,7 @@ export default function createG2(__operation) {
     plotCfg: React.PropTypes.object,
     forceFit: React.PropTypes.bool,
     configs: React.PropTypes.object,
+    onChartReady: React.PropTypes.func,
   };
 
   return Component;
