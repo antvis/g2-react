@@ -1,5 +1,6 @@
 import G2 from 'g2';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 let uniqueId = 0;
 function generateUniqueId() {
@@ -8,6 +9,15 @@ function generateUniqueId() {
 
 export default function createG2(__operation) {
   class Component extends React.Component {
+
+    static propTypes = {
+      data: PropTypes.arrayOf(PropTypes.object).isRequired,
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
+      plotCfg: PropTypes.object,
+      forceFit: PropTypes.bool,
+      configs: PropTypes.object,
+    };
 
     constructor(props, context) {
       super(props, context);
@@ -62,15 +72,6 @@ export default function createG2(__operation) {
       return (<div id={this.chartId} />);
     }
   }
-
-  Component.propTypes = {
-    data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-    plotCfg: React.PropTypes.object,
-    forceFit: React.PropTypes.bool,
-    configs: React.PropTypes.object,
-  };
 
   return Component;
 }
