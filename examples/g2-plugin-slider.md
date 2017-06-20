@@ -11,13 +11,13 @@
 import createG2 from 'g2-react';
 import G2, { Stat, Plugin, Frame } from 'g2';
 import 'g2-plugin-slider';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import data from './candleSticks.json';
 
-const MyComponent = React.createClass({
-
-  getInitialState: function() {
+class MyComponent extends Component {
+  constructor(props, ...args) {
+    super(props, ...args);
     const frame = new Frame(data);
     frame.addCol('trend', function(obj) {
       return (obj.start <= obj.end) ? 0 : 1;
@@ -77,7 +77,7 @@ const MyComponent = React.createClass({
       });
       slider.render();
     });
-    return {
+    this.state = {
       data: data,
       width: 500,
       height: 250,
@@ -89,17 +89,17 @@ const MyComponent = React.createClass({
       },
       Chart: Chart,
     };
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div>
         <this.state.Chart data={this.state.data} width={this.state.width} height={this.state.height} plotCfg={this.state.plotCfg} ref="myChart"/>
         <div id="range"></div>
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<MyComponent />, document.getElementById('__react-content'));
 
