@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>pie</title>
+    <title>refs</title>
     <link href="//os.alipayobjects.com/rmsportal/iUKcdtKUFtONTig.css" rel="stylesheet"/>
     <style type="text/css">
       @font-face {
@@ -882,19 +882,17 @@
         
           <a href="../index.html" class="menu-item">Index</a>
         
-          <a href="g2-plugin-slider.html" class="menu-item">g2-plugin-slider</a>
+          <a href="line.html" class="menu-item">线图</a>
         
-          <a href="higherWrapper.html" class="menu-item">higherWrapper</a>
+          <a href="pie.html" class="menu-item">饼图</a>
         
-          <a href="line.html" class="menu-item">line</a>
-        
-          <a href="" class="menu-item selected">pie</a>
+          <a href="" class="menu-item selected">通过 refs 获取 Component</a>
         
       </ul>
       <div class="wrapper-content">
         <div class="header">
-          <h2 class="major-title">pie</h2>
-          <h4 class="desc-title">examples/pie.md</h4>
+          <h2 class="major-title">通过 refs 获取 Component</h2>
+          <h4 class="desc-title">examples/refs.md</h4>
         </div>
         <div class="example">
           <div class="example-dom" id="__exampleDom"></div>
@@ -909,7 +907,7 @@
             
               <script src="../common.js"></script>
             
-              <script src="pie.js"></script>
+              <script src="refs.js"></script>
             
           </div>
         </div>
@@ -924,7 +922,7 @@
 <div class="highlight">
     <pre><code language=jsx><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
 <span class="hljs-keyword">import</span> { Stat } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
-<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 <span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./diamond.json'</span>;
 
@@ -934,23 +932,25 @@
   chart.render();
 });
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<span class="hljs-keyword">const</span> MyComponent = React.createClass({
 
-  state =  {
-    data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
-    width: <span class="hljs-number">500</span>,
-    height: <span class="hljs-number">250</span>,
-    plotCfg: {
-      margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
-    },
-  }
+  getInitialState() {
+    <span class="hljs-keyword">return</span> {
+      data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
+      width: <span class="hljs-number">500</span>,
+      height: <span class="hljs-number">250</span>,
+      plotCfg: {
+        margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
+      },
+    };
+  },
 
-  changeHandler = () =&gt; {
+  changeHandler() {
     <span class="hljs-keyword">const</span> { chart } = <span class="hljs-keyword">this</span>.refs.myChart;
     chart.clear();
     chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'clarity'</span>);      <span class="hljs-comment">// operation</span>
     chart.render();
-  }
+  },
 
   render() {
     <span class="hljs-keyword">return</span> (
@@ -965,8 +965,8 @@
         &lt;button onClick={this.changeHandler}&gt;change&lt;/button&gt;
       &lt;/div&gt;
     );
-  }
-}
+  },
+});
 
 ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
   </div>

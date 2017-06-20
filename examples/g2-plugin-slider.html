@@ -927,13 +927,13 @@
     <pre><code language=js><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
 <span class="hljs-keyword">import</span> G2, { Stat, Plugin, Frame } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">'g2-plugin-slider'</span>;
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 <span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./candleSticks.json'</span>;
 
-<span class="hljs-keyword">const</span> MyComponent = React.createClass({
-
-  getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props, ...args) {
+    <span class="hljs-keyword">super</span>(props, ...args);
     <span class="hljs-keyword">const</span> frame = <span class="hljs-keyword">new</span> Frame(data);
     frame.addCol(<span class="hljs-string">'trend'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
       <span class="hljs-keyword">return</span> (obj.start &lt;= obj.end) ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>;
@@ -993,7 +993,7 @@
       });
       slider.render();
     });
-    <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">this</span>.state = {
       data: data,
       width: <span class="hljs-number">500</span>,
       height: <span class="hljs-number">250</span>,
@@ -1005,17 +1005,17 @@
       },
       Chart: Chart,
     };
-  },
+  }
 
-  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  render() {
     <span class="hljs-keyword">return</span> (
       &lt;div&gt;
         &lt;this.state.Chart data={this.state.data} width={this.state.width} height={this.state.height} plotCfg={this.state.plotCfg} ref="myChart"/&gt;
         &lt;div id="range"&gt;&lt;/div&gt;
       &lt;/div&gt;
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
   </div>

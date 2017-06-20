@@ -4,8 +4,9 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
     <title>
-      g2-react@1.2.0
+      g2-react@1.3.0
     </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <link href="//os.alipayobjects.com/rmsportal/iUKcdtKUFtONTig.css" rel="stylesheet"/>
     <style type="text/css">
       @font-face {
@@ -700,7 +701,7 @@
   <body>
     <div>
       <div class="header">
-        <h1>g2-react@1.2.0</h1>
+        <h1>g2-react@1.3.0</h1>
       </div>
       <div class="examples">
         <h3>EXAMPLES</h3>
@@ -817,6 +818,12 @@ React.render(
       <td>false</td>
       <td>if the width of chart autoFit with parent</td>
     </tr>
+     <tr>
+      <td>configs</td>
+      <td>any</td>
+      <td></td>
+      <td>as arguments of createG2((chart, configs))</td>
+    </tr>
   </tbody>
 </table>
 
@@ -835,7 +842,12 @@ $ npm run doc</code></pre>
       <div class="boxed-group md-wrapper" id="history">
         <h3>HISTORY.md</h3>
         <div class="markdown-body">
-          <h2 id="1-2-0">1.2.0</h2>
+          <h2 id="1-3-0">1.3.0</h2>
+<ul>
+<li>[feat] support createG2((chart, configs)), read configs from <Chart configs={configs}>, <a href="https://github.com/antvis/g2-react/pull/24">!24</a></li>
+<li>[fix] legacy deps, <a href="https://github.com/antvis/g2-react/issues/39">#39</a></li>
+</ul>
+<h2 id="1-2-0">1.2.0</h2>
 <ul>
 <li>[performance] react component should NOT update</li>
 <li>[docs] add <a href="https://github.com/antvis/g2-react/blob/master/examples/higherWrapper.md">higherWrapper demo</a></li>

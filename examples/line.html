@@ -924,7 +924,7 @@
 <div class="highlight">
     <pre><code language=jsx><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
 <span class="hljs-keyword">import</span> { Stat } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 <span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./data.json'</span>;
 
@@ -933,24 +933,21 @@
   chart.render();
 });
 
-<span class="hljs-keyword">const</span> MyComponent = React.createClass({
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  state = {
+    data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
+    width: <span class="hljs-number">500</span>,
+    height: <span class="hljs-number">250</span>,
+    plotCfg: {
+      margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
+    },
+  }
 
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
-      width: <span class="hljs-number">500</span>,
-      height: <span class="hljs-number">250</span>,
-      plotCfg: {
-        margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
-      },
-    };
-  },
-
-  changeHandler() {
+  changeHandler = () =&gt; {
     <span class="hljs-keyword">this</span>.setState({
       data: data.slice(data.length / <span class="hljs-number">2</span>, data.length - <span class="hljs-number">1</span>),
     });
-  },
+  }
 
   render() {
     <span class="hljs-keyword">return</span> (
@@ -964,8 +961,8 @@
         &lt;button onClick={this.changeHandler}&gt;Change Data&lt;/button&gt;
       &lt;/div&gt;
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
   </div>
