@@ -1,3 +1,8 @@
+## 1.3.0
+
+- [feat] support createG2((chart, configs)), read configs from <Chart configs={configs}>, [!24](https://github.com/antvis/g2-react/pull/24)
+- [fix] legacy deps, [#39](https://github.com/antvis/g2-react/issues/39)
+
 ## 1.2.0
 
 - [performance] react component should NOT update

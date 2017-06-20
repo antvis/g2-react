@@ -96,6 +96,12 @@ See detail api of [g2](http://g2.alipay.com/api/)
       <td>false</td>
       <td>if the width of chart autoFit with parent</td>
     </tr>
+     <tr>
+      <td>configs</td>
+      <td>any</td>
+      <td></td>
+      <td>as arguments of createG2((chart, configs))</td>
+    </tr>
   </tbody>
 </table>
 
