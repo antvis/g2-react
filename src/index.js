@@ -36,6 +36,12 @@ export default function createG2(__operation) {
       const { data: newData, width: newWidth, height: newHeight, plotCfg: newPlotCfg } = newProps;
       const { data: oldData, width: oldWidth, height: oldHeight, plotCfg: oldPlotCfg } = this.props;
 
+      if (oldData.length === 0 && newData.length > 0) {
+        this.destroyChart();
+        this.initChart(newProps);
+        return;
+      }
+
       if (newPlotCfg !== oldPlotCfg) {
         console.warn('plotCfg 不支持修改');
       }
@@ -53,8 +59,7 @@ export default function createG2(__operation) {
     }
 
     componentWillUnmount() {
-      this.chart.destroy();
-      this.chart = null;
+      this.destroyChart();
       this.chartId = null;
     }
 
@@ -69,6 +74,13 @@ export default function createG2(__operation) {
       chart.source(data);
       __operation(chart, configs);
       this.chart = chart;
+    }
+
+    destroyChart() {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.chart = null;
     }
 
     render() {
