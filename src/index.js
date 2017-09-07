@@ -11,7 +11,10 @@ export default function createG2(__operation) {
   class Component extends React.Component {
 
     static propTypes = {
-      data: PropTypes.arrayOf(PropTypes.object).isRequired,
+      data: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.object),
+        PropTypes.instanceOf(G2.Frame),
+      ]).isRequired,
       width: PropTypes.number.isRequired,
       height: PropTypes.number.isRequired,
       plotCfg: PropTypes.object,
