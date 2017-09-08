@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>refs</title>
+    <title>use-frame</title>
     <link href="//os.alipayobjects.com/rmsportal/iUKcdtKUFtONTig.css" rel="stylesheet"/>
     <style type="text/css">
       @font-face {
@@ -882,17 +882,21 @@
         
           <a href="../index.html" class="menu-item">Index</a>
         
-          <a href="line.html" class="menu-item">线图</a>
+          <a href="g2-plugin-slider.html" class="menu-item">g2-plugin-slider</a>
         
-          <a href="pie.html" class="menu-item">饼图</a>
+          <a href="higherWrapper.html" class="menu-item">higherWrapper</a>
         
-          <a href="" class="menu-item selected">通过 refs 获取 Component</a>
+          <a href="line.html" class="menu-item">line</a>
+        
+          <a href="pie.html" class="menu-item">pie</a>
+        
+          <a href="" class="menu-item selected">use-frame</a>
         
       </ul>
       <div class="wrapper-content">
         <div class="header">
-          <h2 class="major-title">通过 refs 获取 Component</h2>
-          <h4 class="desc-title">examples/refs.md</h4>
+          <h2 class="major-title">use-frame</h2>
+          <h4 class="desc-title">examples/use-frame.md</h4>
         </div>
         <div class="example">
           <div class="example-dom" id="__exampleDom"></div>
@@ -907,7 +911,7 @@
             
               <script src="../common.js"></script>
             
-              <script src="refs.js"></script>
+              <script src="use-frame.js"></script>
             
           </div>
         </div>
@@ -921,58 +925,63 @@
   </div>
 <div class="highlight">
     <pre><code language=jsx><span class="hljs-keyword">import</span> createG2 <span class="hljs-keyword">from</span> <span class="hljs-string">'g2-react'</span>;
-<span class="hljs-keyword">import</span> { Stat } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { Stat, Frame } <span class="hljs-keyword">from</span> <span class="hljs-string">'g2'</span>;
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
-<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./diamond.json'</span>;
+<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./top2000.json'</span>;
 
-<span class="hljs-keyword">const</span> Pie = createG2(chart =&gt; {
-  chart.coord(<span class="hljs-string">'theta'</span>);
-  chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'cut'</span>);
+<span class="hljs-keyword">const</span> Line = createG2(chart =&gt; {
+  chart.setMode(<span class="hljs-string">'select'</span>); <span class="hljs-comment">// 开启框选模式</span>
+  chart.select(<span class="hljs-string">'rangeX'</span>); <span class="hljs-comment">// 设置 X 轴范围的框选</span>
+  chart.cols({ 
+    <span class="hljs-string">'..count'</span>: {
+      alias: <span class="hljs-string">'top2000 唱片总量'</span>
+    },
+    release: {
+      tickInterval: <span class="hljs-number">5</span>,
+      alias: <span class="hljs-string">'唱片发行年份'</span>
+    }
+  });
+  chart.interval().position(Stat.summary.count(<span class="hljs-string">'release'</span>)).color(<span class="hljs-string">'#e50000'</span>);
   chart.render();
+  <span class="hljs-comment">// 监听双击事件，这里用于复原图表</span>
+  chart.on(<span class="hljs-string">'plotdblclick'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+    chart.get(<span class="hljs-string">'options'</span>).filters = {}; <span class="hljs-comment">// 清空 filters</span>
+    chart.repaint();
+  });
 });
 
-<span class="hljs-keyword">const</span> MyComponent = React.createClass({
-
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      data: data.slice(<span class="hljs-number">0</span>, data.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>),
-      width: <span class="hljs-number">500</span>,
-      height: <span class="hljs-number">250</span>,
-      plotCfg: {
-        margin: [<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>],
-      },
-    };
-  },
-
-  changeHandler() {
-    <span class="hljs-keyword">const</span> { chart } = <span class="hljs-keyword">this</span>.refs.myChart;
-    chart.clear();
-    chart.intervalStack().position(Stat.summary.proportion()).color(<span class="hljs-string">'clarity'</span>);      <span class="hljs-comment">// operation</span>
-    chart.render();
-  },
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  state = {
+    data: Frame.sort(<span class="hljs-keyword">new</span> Frame(data), <span class="hljs-string">'release'</span>) ,
+    width: <span class="hljs-number">500</span>,
+    forceFit: <span class="hljs-literal">true</span>,
+    height: <span class="hljs-number">450</span>,
+    plotCfg: {
+      margin: [<span class="hljs-number">20</span>, <span class="hljs-number">60</span>, <span class="hljs-number">80</span>, <span class="hljs-number">120</span>]
+    },
+  }
 
   render() {
     <span class="hljs-keyword">return</span> (
       &lt;div&gt;
-        &lt;Pie
+        &lt;Line
           data={this.state.data}
           width={this.state.width}
           height={this.state.height}
+          forceFit={this.state.forceFit}
           plotCfg={this.state.plotCfg}
-          ref="myChart"
         /&gt;
-        &lt;button onClick={this.changeHandler}&gt;change&lt;/button&gt;
       &lt;/div&gt;
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('__react-content'));</code></pre>
   </div>
 <h2>Description</h2>
-<ul><li>simple example for pie chart</li>
-<li>change other props by refs</li></ul>
+<ul><li>simple example for line chart</li>
+<li>change data by state</li></ul>
             </div>
           </div>
         
