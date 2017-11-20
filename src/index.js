@@ -33,12 +33,8 @@ export default function createG2(__operation) {
     }
 
     componentWillReceiveProps(newProps) {
-      const { data: newData, width: newWidth, height: newHeight, plotCfg: newPlotCfg } = newProps;
-      const { data: oldData, width: oldWidth, height: oldHeight, plotCfg: oldPlotCfg } = this.props;
-
-      if (newPlotCfg !== oldPlotCfg) {
-        console.warn('plotCfg 不支持修改');
-      }
+      const { data: newData, width: newWidth, height: newHeight } = newProps;
+      const { data: oldData, width: oldWidth, height: oldHeight } = this.props;
 
       if (newData !== oldData) {
         this.chart.changeData(newData);
